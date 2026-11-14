@@ -25,6 +25,7 @@
 		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
+		"@supabase/ssr": "^0.12.7",
 		"@supabase/supabase-js": "^2.119.0",
 		"@tailwindcss/vite": "^4.3.3",
 		"daisyui": "^5.8.0",
