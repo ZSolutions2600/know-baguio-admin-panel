@@ -1,3 +1,14 @@
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import type { PageProps } from './$types';
+
+  let { form }: PageProps = $props();
+  let emailInput: HTMLInputElement | undefined;
+  let isSubmitting = $state(false);
+
+  onMount(() => emailInput?.focus());
+</script>
+
 <main class="flex min-h-screen items-center justify-center">
   <div class="card card-border p-4 shadow-2xl w-max-96">
     <!-- Logo -->
@@ -5,7 +16,15 @@
 
     <p class="text-2xl mb-1">Log in</p>
 
-    <form class="w-80" action="?/login" method="POST">
+    <form
+      class="w-80"
+      action="?/login"
+      method="POST"
+      onsubmit={(event) => {
+        isSubmitting = true;
+        event.currentTarget.querySelectorAll('input').forEach((input) => input.blur())
+      }}
+    >
       <!-- Email field -->
       <label class="input validator">
         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -20,7 +39,7 @@
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
           </g>
         </svg>
-        <input type="email" placeholder="Email" required />
+        <input bind:this={emailInput} type="email" name="email" placeholder="Email" required />
       </label>
       <div class="validator-hint hidden">Enter valid email address</div>
 
@@ -42,6 +61,7 @@
         </svg>
         <input
           type="password"
+          name="password"
           required
           placeholder="Password"
           minlength="8"
@@ -55,7 +75,16 @@
       </p>
 
       <!-- Submit button -->
-      <button class="btn btn-neutral mt-4 w-80">Login</button>
+      <button class="btn btn-neutral mt-4 w-80" disabled={isSubmitting}>
+        {#if isSubmitting}
+          <span class="loading loading-spinner"></span>
+        {/if}
+        Login
+      </button>
     </form>
+
+    {#if form?.message}
+      <p class="mt-2 text-sm text-error" role="alert">{form.message}</p>
+    {/if}
   </div>
 </main>
