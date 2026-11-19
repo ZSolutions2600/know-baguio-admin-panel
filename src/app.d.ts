@@ -7,7 +7,7 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-		supabase: SupabaseClient<Database>
+			supabase: SupabaseClient<Database>
 		}
 		// interface PageData {}
 		// interface PageState {}
