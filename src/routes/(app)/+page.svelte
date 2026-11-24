@@ -1,9 +1,7 @@
-<script lang="ts">
-    import type { PageProps } from './$types';
+<section class="space-y-4">
+    <h1 class="text-2xl font-semibold">Dashboard</h1>
 
-    let { data }: PageProps = $props();
-</script>
-
-<form method="POST" action="?/logout" class="flex min-h-screen items-center justify-center">
-    <button type="submit" class="btn">Logout</button>
-</form>
+    <form method="POST" action="?/logout">
+        <button type="submit" class="btn btn-neutral">Log out</button>
+    </form>
+</section>
