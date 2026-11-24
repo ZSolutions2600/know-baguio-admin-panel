@@ -74,6 +74,10 @@
         <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
       </p>
 
+      <div class="mt-1 flex justify-end">
+        <a href="/forgot-password" class="link link-hover text-sm">Forgot password?</a>
+      </div>
+
       <!-- Submit button -->
       <button class="btn btn-neutral mt-4 w-80" disabled={isSubmitting}>
         {#if isSubmitting}
